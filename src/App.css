@@ -13,7 +13,7 @@ h4 {
 .functional-section, .class-based-section {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: space-between;
   justify-content: start;
   gap: 0.5rem;
   border-radius: 1rem;
@@ -44,4 +44,11 @@ form {
   justify-content: space-between;
   gap: 0.25rem;
   margin: 0.5rem;
+}
+
+.input-field-container, .button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
 }
