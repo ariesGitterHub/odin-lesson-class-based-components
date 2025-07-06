@@ -1,0 +1,47 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+h4 {
+  text-transform: uppercase;
+}
+
+.functional-section, .class-based-section {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  color: var(--gold);
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.functional-section {
+background-color: var(--red);
+}
+
+.class-based-section {
+background-color: var(--blue);
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.todo-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  margin: 0.5rem;
+}
