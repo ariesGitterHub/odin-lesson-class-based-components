@@ -3,7 +3,7 @@ import Button from "./FunctionButton";
 import InputField from "./FunctionInputField";
 
 const FunctionalInput = ({ name }) => {
-  const [todos, setTodos] = useState(["Just some demo tasks", "As an example"]);
+  const [todos, setTodos] = useState(["Example 1, take out the trash", "Example 2, do the laundry"]);
   const [inputVal, setInputVal] = useState("");
   const [count, setCount] = useState(0);
   const [showForm, setShowForm] = useState(null);
@@ -45,8 +45,7 @@ const FunctionalInput = ({ name }) => {
 
   return (
     <section className="functional-section">
-      <h2>Functional Input</h2>
-      <h3>{name}</h3>
+      <h2>{name}</h2>
       <form onSubmit={handleSubmit}>
         <InputField
           label="Enter a new task &nbsp;"
@@ -55,7 +54,7 @@ const FunctionalInput = ({ name }) => {
           buttonText="Submit"
         />
       </form>
-      <h4>Current tasks: {count}</h4>
+      <h3>Current tasks: {count}</h3>
       <ul>
         {todos.map((todo) => (
           <div className="todo-container-functional" key={todo}>

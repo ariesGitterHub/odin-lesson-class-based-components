@@ -8,8 +8,8 @@ function App() {
     <>
       <div className="app-container">
         <h1>Function vs Class-based Components</h1>
-        <FunctionalInput />
-        <ClassInput />
+        <FunctionalInput name="Functional Input Example" />
+        <ClassInput name="Class-based Input Example" />
       </div>
     </>
   );

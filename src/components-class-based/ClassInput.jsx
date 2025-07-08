@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { render } from "react-dom"; // deprecated by needed it this to run it
+import { render } from "react-dom"; // deprecated but I needed this to run it this function
 import Button from "./ClassButton";
 import InputField from "./ClassInputField";
 
@@ -8,7 +8,7 @@ class ClassInput extends Component {
     super(props);
 
     this.state = {
-      todos: ["Just some demo tasks", "As an example"],
+      todos: ["Example 1, take out the trash", "Example 2, do the laundry"],
       inputVal: "",
       count: 0,
       showForm: null,
@@ -20,7 +20,6 @@ class ClassInput extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleEditSubmit = this.handleEditSubmit.bind(this);
-    // this.setEditInputVal = this.setEditInputVal.bind(this); // Bind this method for editing
   }
 
   // Below, this is equivalent to a useEffect hook.
@@ -92,9 +91,8 @@ class ClassInput extends Component {
   render() {
     return (
       <section className="class-based-section">
-        <h2>Class-based Input</h2>
         {/* Notice how the props get provided by this, unlike the FunctionalInput */}
-        <h3>{this.props.name}</h3>
+        <h2>{this.props.name}</h2>
         <form onSubmit={this.handleSubmit}>
           {/* <label htmlFor="task-entry">Enter a task: </label> */}
           {/* <input
@@ -113,7 +111,7 @@ class ClassInput extends Component {
           />
         </form>
         {/* <h4>All the tasks!</h4> */}
-        <h4>Current tasks: {this.state.count}</h4>
+        <h3>Current tasks: {this.state.count}</h3>
         {/* <ul>
           {this.state.todos.map((todo) => (
             <li key={todo}>{todo}</li>
@@ -147,13 +145,14 @@ class ClassInput extends Component {
                   <InputField
                     label="Edit task &nbsp;"
                     value={this.state.editInputVal}
+                    // ALL OF THESES ONCHANGES BELOW WORK, I had a code issue that I thought dealt with this area, but it turns out that the problem was "this.state.showForm === todo &&", I had "this.showForm === todo &&"
                     onChange={(e) => this.setEditInputVal(e.target.value)}
                     // onChange={(e) =>
                     //   this.setState({ editInputVal: e.target.value })
                     // }
                     //onChange={(e) => {
-                      // console.log("Editing Input:", e.target.value);
-                      //this.setState({ editInputVal: e.target.value });
+                    // console.log("Editing Input:", e.target.value);
+                    //this.setState({ editInputVal: e.target.value });
                     //}}
                     buttonText="Resubmit"
                   />
