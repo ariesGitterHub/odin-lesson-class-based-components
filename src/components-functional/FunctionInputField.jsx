@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "./FunctionButton";
 
 export default function InputField({
   label,
@@ -9,6 +9,7 @@ export default function InputField({
   placeholder = "Please input a task...",
   onChange,
   required = false,
+  buttonText,
 }) {
   return (
     <div className="input-field-container">
@@ -24,9 +25,8 @@ export default function InputField({
         autoFocus
       />
       <div className="button-container">
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{buttonText}</Button>
       </div>
-
     </div>
   );
 }

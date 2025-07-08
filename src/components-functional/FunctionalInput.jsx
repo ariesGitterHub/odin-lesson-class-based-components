@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import Button from "./Button";
-import InputField from "./InputField";
+import Button from "./FunctionButton";
+import InputField from "./FunctionInputField";
 
 const FunctionalInput = ({ name }) => {
   const [todos, setTodos] = useState(["Just some demo tasks", "As an example"]);
   const [inputVal, setInputVal] = useState("");
   const [count, setCount] = useState(0);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(null);
+  const [editInputVal, setEditInputVal] = useState(""); // holds current edit value
 
   useEffect(() => {
     const countTasks = todos.length;
@@ -28,8 +29,18 @@ const FunctionalInput = ({ name }) => {
     setTodos(updatedTasks);
   };
 
-  const toggleForm = (todo) => {
-    setShowForm(true);
+  const handleToggle = (todo) => {
+    setShowForm(todo); // this identifies which todo is being edited
+    setEditInputVal(todo); // preload the existing todo value into input
+  };
+
+  const handleEditSubmit = (e, originalTodo) => {
+    e.preventDefault();
+    const updatedTodos = todos.map((todo) =>
+      todo === originalTodo ? editInputVal : todo
+    );
+    setTodos(updatedTodos);
+    setShowForm(null); // close edit form
   };
 
   return (
@@ -37,36 +48,41 @@ const FunctionalInput = ({ name }) => {
       <h2>Functional Input</h2>
       <h3>{name}</h3>
       <form onSubmit={handleSubmit}>
-        {/* <label htmlFor="task-entry">Enter a task &nbsp;</label>
-        <input
-          type="text"
-          id="task-entry"
-          name="task-entry"
-          value={inputVal}
-          placeholder="Please input a task..."
-          onChange={handleInputChange}
-        /> */}
         <InputField
-          label="Enter a task &nbsp;"
+          label="Enter a new task &nbsp;"
           value={inputVal}
           onChange={handleInputChange}
+          buttonText="Submit"
         />
       </form>
-      <h4>You currently have {count} tasks</h4>
+      <h4>Current tasks: {count}</h4>
       <ul>
         {todos.map((todo) => (
-          <div className="todo-container" key={todo}>
-            <li>{todo}</li>
-            <div className="button-container">
-              <Button type="button" onClick={() => handleDelete(todo)}>
-                Delete
-              </Button>
-              <Button type="button" onClick={() => handleToggle(todo)}>
-                Edit
-              </Button>
-            </div>
-
-            {/* Add edit button and mirror what was done with CV app. */}
+          <div className="todo-container-functional" key={todo}>
+            {showForm !== todo && (
+              <>
+                <li>{todo}</li>
+                <div className="button-container">
+                  <Button type="button" onClick={() => handleDelete(todo)}>
+                    Delete
+                  </Button>
+                  <Button type="button" onClick={() => handleToggle(todo)}>
+                    Edit
+                  </Button>
+                </div>
+              </>
+            )}
+            {/* Only show input if this todo is being edited */}
+            {showForm === todo && (
+              <form onSubmit={(e) => handleEditSubmit(e, todo)}>
+                <InputField
+                  label="Edit task &nbsp;"
+                  value={editInputVal}
+                  onChange={(e) => setEditInputVal(e.target.value)}
+                  buttonText="Resubmit"
+                />
+              </form>
+            )}
           </div>
         ))}
       </ul>

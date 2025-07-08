@@ -3,8 +3,9 @@
   --white: #ddddcc;
   --black: #1d1212;
   --red: #924545;
-  --blue: #454a92 ;
-  --red-trans: #92454580;
+  --red-dk: #281414;
+  --blue: #454f92;
+  --blue-dk: #141428;
   --gold-lt: #c6bd86;
   --gold: #edbd58;
   --blue-lt: #9eb1b8;
@@ -36,5 +37,13 @@ body {
 }
 
 li {
-  margin-left: 0.5rem;
+  list-style: none;
 }
+
+.visible {
+  display: flex;
+}
+
+/* .invisible {
+  display: none;
+} */
